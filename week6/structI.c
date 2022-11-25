@@ -17,71 +17,66 @@ char addflag;
 struct book_st books[5];
 struct tran_st trans[10];
 while(choice != 4)
-{ clrscr();
-printf("\nSelect from Menu\n1. Add book names\n2.
-Record Issue/Return\n3. Sort Transactions\n4.
-Exit\n\nEnter choice: ");
+    { clrscr();
+    printf("\nSelect from Menu\n1. Add book names\n2.Record Issue/Return\n3. Sort Transactions\n4.Exit\n\nEnter choice: ");
 scanf("%d", &choice);
 if(choice == 1)
-{ addflag = 'y';
-clrscr();
-for(i = 0; i < 5 && addflag == 'y'; i++)
-{ books[i].book_cd = i + 1;
-printf("\n\nBook code: %d\n\nBook name:",
-i+1);
-scanf("%s", books[i].book_nm);
-printf("\nAuthor: ");
-scanf("%s", books[i].author);
-printf("\nNumber of copies: ");
-scanf("%d", &books[i].copies);
-printf("\n\nContinue? (y/n): ");
-scanf(" %c", &addflag);
-}
-}
+    { addflag = 'y';
+    clrscr();
+    for(i = 0; i < 5 && addflag == 'y'; i++)
+        { books[i].book_cd = i + 1;
+        printf("\n\nBook code: %d\n\nBook name:",i+1);
+        scanf("%s", books[i].book_nm);
+        printf("\nAuthor: ");
+        scanf("%s", books[i].author);
+        printf("\nNumber of copies: ");
+        scanf("%d", &books[i].copies);
+        printf("\n\nContinue? (y/n): ");
+        scanf(" %c", &addflag);
+        }
+    }
 else if(choice == 2)
-{ addflag = 'y';
-clrscr();
-for(i = 0; i < 10 && addflag == 'y'; i++)
-{ printf("\n\nBook code: ");
-scanf("%d", &trans[i].book_code);
-printf("\nIssue or Return?(I/R): ");
-scanf(" %c", &trans[i].tran_type);
-printf("\nDate: ");
-scanf("%d %d %d",
-&trans[i].tran_dt.month,
-&trans[i].tran_dt.day,
-&trans[i].tran_dt.year);
-printf("\n\nContinue? (y/n): ");
-scanf(" %c", &addflag);
-}
-}
+    { addflag = 'y';
+    clrscr();
+    for(i = 0; i < 10 && addflag == 'y'; i++)
+        { printf("\n\nBook code: ");
+        scanf("%d", &trans[i].book_code);
+        printf("\nIssue or Return?(I/R): ");
+        scanf(" %c", &trans[i].tran_type);
+        printf("\nDate: ");
+        scanf("%d %d %d",&trans[i].tran_dt.month,&trans[i].tran_dt.day,&trans[i].tran_dt.year);
+        printf("\n\nContinue? (y/n): ");
+        scanf(" %c", &addflag);
+        }
+    }
 else if(choice == 3)
 {
-sorttran(trans);
-}}
+    sorttran(trans);
+}
+        }
 }
 sorttran(struct tran_st tran[10])
-{
-int i, j, tempcode;
-struct tran_st temptran;
-clrscr();
-for(i = 0; i < 10; i++)
-for(j = i + 1; j < 10; j++)
-{
-if(tran[i].book_code > tran[j].book_code)
-{ temptran = tran[i];
-tran[i] = tran[j];
-tran[j] = temptran;
-}
-}
-for(i = 0, j = 0; i < 10; j = 0)
-{ tempcode = tran[i].book_code;
-while(tran[i].book_code == tempcode && i < 10)
-{ j++;
-i++;
-}
-printf("\nBook code %d had %d transactions",
-tempcode, j);
-}
-getch();
+    {
+        int i, j, tempcode;
+        struct tran_st temptran;
+        clrscr();
+        for(i = 0; i < 10; i++)
+        for(j = i + 1; j < 10; j++)
+            {
+                if(tran[i].book_code > tran[j].book_code)
+                    { temptran = tran[i];
+                    tran[i] = tran[j];
+                    tran[j] = temptran;
+                    }
+            }
+        for(i = 0, j = 0; i < 10; j = 0)
+            { tempcode = tran[i].book_code;
+                while(tran[i].book_code == tempcode && i < 10)
+                { j++;
+                i++;
+                }
+                printf("\nBook code %d had %d transactions",
+                tempcode, j);
+            }
+        getch();
 }
